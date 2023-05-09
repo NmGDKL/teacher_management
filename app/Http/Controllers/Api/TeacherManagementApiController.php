@@ -112,7 +112,7 @@ class TeacherManagementApiController extends Controller
         }
     }
 
-    // Öğrenci bilgilerine erişmek için birleştirme işlemi yapın.
+    // Öğrenci bilgilerine erişmek için birleştirme işlemi 
     $removed_students = collect($removed_students)->map(function ($item) {
         $user = User::find($item['id']);
         $item['name'] = $user->name;
@@ -140,7 +140,7 @@ class TeacherManagementApiController extends Controller
                 ->exists();
             if (!$exists) {
                 $student_data = ['user_id' => $user_id, 'school_class_id' => $school_class_id];
-                // Check if the student has already been added
+                // Öğrencinin zaten ekli olup olmadığına bakıyoruz.
                 $already_added = collect($students_to_add_data)->where('user_id', $user_id)->first();
                 if (!$already_added) {
                     array_push($students_to_add_data, $student_data);
@@ -150,7 +150,7 @@ class TeacherManagementApiController extends Controller
         }
     }
 
-    // Öğrenci bilgilerine erişmek için birleştirme işlemi yapın.
+    // Öğrenci bilgilerine erişmek için birleştirme işlemi 
     $new_students = collect($new_students)->map(function ($item) {
         $user = User::find($item['id']);
         $item['name'] = $user->name;
